@@ -1,16 +1,19 @@
 import React from "react"
-import { Link } from "gatsby"
-import Header from "../components/header"
+
+import Layout from "../layouts/layout"
 
 export default function contact() {
   return (
-    <div>
-      <Link to="/">Home</Link>
-      <Header text="Contact"></Header>
+    <Layout>
+      <h1>JOOOO</h1>
+      <h2>JOOOO</h2>
+      <h3>JOOOO</h3>
+      <h4>JOOOO</h4>
+      <h5>JOOOO</h5>
       <p>Send me a message</p>
       <form style={{ width: "50vw" }}>
         <input style={{ padding: "1em" }} placeholder="Kggg kggg.."></input>
       </form>
-    </div>
+    </Layout>
   )
 }

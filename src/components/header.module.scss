@@ -1,0 +1,27 @@
+header {
+  background-color: lightcoral;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  // padding: 5em;
+  position: sticky;
+
+  top: 0em;
+  z-index: 2;
+  // height: 200vh;
+  h1 {
+    font-size: 2em;
+    margin: 0px;
+  }
+}
+
+ul {
+  // background-color: grey;
+  width: 33vw;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: larger;
+  // font-size: 2em;
+}

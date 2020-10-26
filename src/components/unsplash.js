@@ -1,13 +1,15 @@
 import React from "react"
 
-export default function Unsplash({ resolution }) {
-  const res = resolution ? resolution : "1280x720"
+export default function Unsplash({ resolution, alt }) {
+  const res = resolution ? resolution : ""
   return (
-    <div>
+    <div style={{ position: "sticky", top: "0" }}>
       <img
-        width="100%"
+        width="auto"
+        height="auto"
         src={`https://source.unsplash.com/random/${res}`}
-        alt="random picture"
+        alt={alt ? alt : "random"}
+        style={{}}
       ></img>
     </div>
   )

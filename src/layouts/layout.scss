@@ -1,0 +1,36 @@
+.layout {
+  background-color: lightcoral;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.content {
+  // border: 2px solid blue;
+  display: grid;
+  height: 100%;
+  padding: 10vw 10vw;
+  // margin: auto;
+  h1 {
+    // font-size: 5em;
+  }
+  img {
+    width: 100%;
+  }
+}
+footer {
+  // background-color: lightcyan;
+  padding: 1em;
+}
+h1 {
+  color: black;
+  margin-bottom: 0.5em;
+}
+p {
+  color: rgb(236, 236, 236);
+  margin-bottom: 2em;
+}
+a {
+  text-decoration: none;
+}
