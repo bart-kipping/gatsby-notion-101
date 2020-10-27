@@ -25,9 +25,8 @@ export default function Header(props) {
       animate={{ padding: vari < 4.8 ? "1em" : "5em" }}
       transition={{
         type: "spring",
-        // bounce: 100,
         stiffness: 260,
-        damping: 50,
+        damping: 30,
       }}
     >
       <h1>Bart Kipping</h1>
