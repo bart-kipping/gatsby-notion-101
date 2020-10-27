@@ -14,21 +14,3 @@ export default function Home({ data }) {
     </Layout>
   )
 }
-
-export const query = graphql`
-  query {
-    allNotionPageBlog(
-      filter: { isDraft: { eq: false } }
-      sort: { fields: [indexPage], order: DESC }
-    ) {
-      edges {
-        node {
-          title
-          slug
-          excerpt
-          pageIcon
-        }
-      }
-    }
-  }
-`

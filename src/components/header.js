@@ -1,17 +1,8 @@
 import React, { useState } from "react"
 import { motion, useViewportScroll, useTransform } from "framer-motion"
-import { Link } from "gatsby"
-import "./header.module.scss"
+import ListLink from "./listLink"
 
-function ListLink(props) {
-  return (
-    <li>
-      <Link style={{ color: "black" }} to={props.to}>
-        {props.children}
-      </Link>
-    </li>
-  )
-}
+import "./header.module.scss"
 
 export default function Header(props) {
   let { scrollYProgress } = useViewportScroll()
@@ -34,16 +25,17 @@ export default function Header(props) {
       animate={{ padding: vari < 4.8 ? "1em" : "5em" }}
       transition={{
         type: "spring",
+        // bounce: 100,
         stiffness: 260,
-        damping: 30,
+        damping: 50,
       }}
     >
       <h1>Bart Kipping</h1>
       <ul>
-        <ListLink to="/">Home</ListLink>
-        <ListLink to="/about">About</ListLink>
-        <ListLink to="/contact">Contact</ListLink>
-        <ListLink to="/blog">Blog</ListLink>
+        <ListLink to="/" pageName="Home"></ListLink>
+        <ListLink to="/about" pageName="About"></ListLink>
+        <ListLink to="/contact" pageName="Contact"></ListLink>
+        <ListLink to="/blog" pageName="Blog"></ListLink>
       </ul>
     </motion.header>
   )
