@@ -2,9 +2,9 @@ import React from "react"
 
 import Layout from "../layouts/layout"
 
-export default function contact() {
+export default function contact({ location }) {
   return (
-    <Layout>
+    <Layout loc={location}>
       <h1>JOOOO</h1>
       <h2>JOOOO</h2>
       <h3>JOOOO</h3>

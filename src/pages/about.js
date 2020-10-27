@@ -3,9 +3,9 @@ import Unsplash from "../components/unsplash"
 import Layout from "../layouts/layout"
 import foto from "../Assets/foto.webp"
 
-export default function about() {
+export default function about({ location }) {
   return (
-    <Layout>
+    <Layout loc={location}>
       <h1 style={{ marginBottom: "0.5em" }}>About Bart Kipping</h1>
       <p>
         Non consectetur occaecat dolore proident exercitation. Dolor tempor elit

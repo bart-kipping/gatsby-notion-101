@@ -4,7 +4,7 @@ import ListLink from "./listLink"
 
 import "./header.module.scss"
 
-export default function Header(props) {
+export default function Header({ loc }) {
   let { scrollYProgress } = useViewportScroll()
   let scale = useTransform(
     scrollYProgress,
@@ -31,10 +31,10 @@ export default function Header(props) {
     >
       <h1>Bart Kipping</h1>
       <ul>
-        <ListLink to="/" pageName="Home"></ListLink>
-        <ListLink to="/about" pageName="About"></ListLink>
-        <ListLink to="/contact" pageName="Contact"></ListLink>
-        <ListLink to="/blog" pageName="Blog"></ListLink>
+        <ListLink loc={loc} to="/" pageName="Home"></ListLink>
+        <ListLink loc={loc} to="/about" pageName="About"></ListLink>
+        <ListLink loc={loc} to="/contact" pageName="Contact"></ListLink>
+        <ListLink loc={loc} to="/blog" pageName="Blog"></ListLink>
       </ul>
     </motion.header>
   )

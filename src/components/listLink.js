@@ -6,9 +6,10 @@ import {
   useTransform,
 } from "framer-motion"
 import { Link } from "gatsby"
-export default function ListLink({ pageName, to, location, data }) {
+export default function ListLink({ pageName, to, data, loc }) {
   const [active, setactive] = useState(false)
-  let loc = window.location.pathname
+
+  let loca = loc.pathname
 
   let { scrollYProgress } = useViewportScroll()
   let scale = useTransform(
@@ -24,9 +25,10 @@ export default function ListLink({ pageName, to, location, data }) {
   })
 
   useEffect(() => {
-    loc === "/" && pageName === "Home"
+    console.log(loca)
+    loca === "/" && pageName === "Home"
       ? setactive(true)
-      : loc == `/${pageName.toLowerCase()}`
+      : loca == `/${pageName.toLowerCase()}`
       ? setactive(true)
       : setactive(false)
   }, [])

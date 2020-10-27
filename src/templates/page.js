@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import notionRendererFactory from "gatsby-source-notionso/lib/renderer"
-import Layout from "../layouts/layout"
+// import Layout from "../layouts/layout"
 import NotionBlockRenderer from "../components/notionBlockRenderer"
 
 const Template = ({ pageContext }) => {
