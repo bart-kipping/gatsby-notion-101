@@ -9,7 +9,7 @@ import React from "react"
 // import hljs_json from 'highlight.js/lib/languages/json';
 
 import Title from "./Title"
-import "./styles.css"
+// import "./styles.css"
 import "highlight.js/styles/github.css"
 
 // see: https://github.com/highlightjs/highlight.js
