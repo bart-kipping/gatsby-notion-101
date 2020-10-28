@@ -31,7 +31,12 @@ export default function Header({ loc }) {
     >
       <h1>Bart Kipping</h1>
       <ul>
-        <ListLink loc={loc} to="/" pageName="Home"></ListLink>
+        <ListLink
+          loc={loc}
+          to="/"
+          pageName="Home"
+          state={{ prevPath: loc.pathname }}
+        ></ListLink>
         <ListLink loc={loc} to="/about" pageName="About"></ListLink>
         <ListLink loc={loc} to="/contact" pageName="Contact"></ListLink>
         <ListLink loc={loc} to="/blog" pageName="Blog"></ListLink>

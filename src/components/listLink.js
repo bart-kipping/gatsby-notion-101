@@ -4,13 +4,18 @@ import {
   AnimatePresence,
   useViewportScroll,
   useTransform,
+  useCycle,
 } from "framer-motion"
 import { Link } from "gatsby"
-export default function ListLink({ pageName, to, data, loc }) {
-  const [active, setactive] = useState(false)
 
+const variants = {
+  open: { opacity: "100%", height: 2, width: "100%" },
+  closed: { opacity: "0%", height: 2, width: "0%" },
+}
+const history = [""]
+export default function ListLink({ pageName, to, data, loc, prev }, props) {
   let loca = loc.pathname
-
+  const [refresh, setrefresh] = useState()
   let { scrollYProgress } = useViewportScroll()
   let scale = useTransform(
     scrollYProgress,
@@ -19,62 +24,129 @@ export default function ListLink({ pageName, to, data, loc }) {
     [10, 100]
   )
   const [vari, setvari] = useState(5)
+
   scrollYProgress.onChange(x => {
     // console.log(scale.get())
     setvari(scale.get())
   })
 
-  useEffect(() => {
-    console.log(loca)
+  const [isOpen, setIsOpen] = useState(
     loca === "/" && pageName === "Home"
-      ? setactive(true)
+      ? true
       : loca == `/${pageName.toLowerCase()}`
-      ? setactive(true)
-      : setactive(false)
-  }, [])
+      ? true
+      : false
+  )
+  // const [show, setshow] = useState(
+  //   isOpen || (pageName.toLowerCase() === history[0] && true)
+  // )
 
+  function checkHome() {
+    return (
+      (pageName === "Home" && loca === "/") ||
+      (pageName === "Home" && history[0] === "/")
+    )
+  }
+  useEffect(() => {
+    isOpen && history.splice(0, 1, loca)
+  }, [])
   return (
     <li>
       <Link
         style={{
-          //   backgroundColor: "white",
+          // backgroundColor: "white",
           color: "black",
           display: "grid",
-          height: "fit-content",
+          height: "1em",
         }}
         to={to}
       >
         <p style={{ gridRow: 1, gridColumn: 1, margin: "0px", color: "black" }}>
           {pageName}
         </p>
-        <AnimatePresence>
-          {active && (
-            <motion.div
-              key="modal"
-              initial={{ width: "100%", backgroundColor: "#ffffff" }}
-              animate={{
-                width: active ? `${vari}%` : "0%",
-                backgroundColor: active ? "#000000" : "#ffffff",
-              }}
-              exit={{ width: "0" }}
-              transition={{
-                // delay: 0.3,
-                type: "spring",
-                //   repeat: "1",
-                //   repeatType: "mirror",
-                stiffness: 260,
-                damping: 50,
-              }}
-              style={{
-                gridRow: 1,
-                gridColumn: 1,
-                height: "1px",
-                alignSelf: "flex-end",
-              }}
-            ></motion.div>
-          )}
-        </AnimatePresence>
+        {/* <p>previous path is: {history}</p> */}
+        {console.log(`${history[0]} : ${loca}`)}
+        {/* {console.log(`/${pageName.toLowerCase()}` === history[0])} */}
+        {console.log(checkHome())}
+        {(`/${pageName.toLowerCase()}` === history[0] ||
+          isOpen ||
+          checkHome()) && (
+          <motion.div
+            initial={isOpen ? "closed" : "open"}
+            animate={isOpen ? "open" : "closed"}
+            variants={variants}
+            transition={{
+              delay: 0.5,
+              type: "spring",
+              // repeat: "3",
+              // repeatType: "mirror",
+              stiffness: 2000,
+              damping: 150,
+            }}
+            style={{
+              justifySelf:
+                `/${pageName.toLowerCase()}` === history[0] ? "right" : "left",
+              backgroundColor: "black",
+              transformOrigin: "center",
+            }}
+          ></motion.div>
+        )}
+
+        {/* )} */}
+        {/* </AnimatePresence> */}
       </Link>
     </li>
   )
+}
+
+// useEffect(() => {
+//   // console.log(loca)
+//   // active ? cycleX(0) : cycleX(1)
+//   // active ? cycleY(0) : cycleY(1)
+//   // loca === "/" && pageName === "Home" && setactive(true)
+//   loca === `/${pageName.toLowerCase()}` ? setactive(true) : setactive(false)
+//   // loca === "/" && pageName === "Home"
+//   //   ? setactive(true)
+//   //   : loca == `/${pageName.toLowerCase()}`
+//   //   ? setactive(true)
+//   //   : setactive(false)
+//   console.log(`${pageName} ${active}`)
+// }, [active])
+
+{
+  /* <AnimatePresence>
+{active && (
+  <motion.div
+    // initial={{
+    //   // width: "100%",
+    //   // backgroundColor: "#ffffff",
+    //   // height: "3px",
+    //   opacity: "1",
+    // }}
+    // exit={{ y: 500 }}
+    // animate={{
+    //   height: active ? `${x}px` : `${x}px`,
+    //   // width: active ? `${vari}%` : "0%",
+    //   // backgroundColor: active ? "#000000" : "#ffffff",
+    // }}
+    // // exit={{ width: "0" }}
+    // transition={{
+    //   // delay: 0.3,
+    //   type: "spring",
+    //   //   repeat: "1",
+    //   //   repeatType: "mirror",
+    //   stiffness: 260,
+    //   damping: 150,
+    // }}
+    style={{
+      gridRow: 1,
+      gridColumn: 1,
+      backgroundColor: "white",
+      width: "100%",
+      height: "5px",
+      alignSelf: "flex-end",
+    }}
+  ></motion.div>
+)}
+</AnimatePresence>  */
 }
